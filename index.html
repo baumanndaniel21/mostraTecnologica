@@ -20,36 +20,34 @@
             <form>
                 <label for="horaInicioPico">Horário de início do pico da linha?</label>
                 <input type="datetime-local" id="horaInicioPico" required />
-                </br>
-                </br>
+                <br><br>
                 <label for="horaFinalPico">Horário final do pico da linha?</label>
                 <input type="datetime-local" id="horaFinalPico" required />
-                </br>
-                </br>
+                <br><br>
                 <p>Iniciando câmeras e sensores.<br>
                     <video id="webcam" autoplay playsinline></video>
                 </p>
                 <p>Inicie a viagem.</p>
                
-                </br>
+                <br><br>
                 <label for="sensorEntrada">Alguém entrou?</label>
                 <select id="sensorEntrada">
                     <option value="sim">Sim</option>
                     <option value="nao">Não</option>
                 </select>
-                <br /><br />
+                <br><br>
                 <label for="sensorSaida">Alguém saiu?</label>
                 <select id="sensorSaida">
                     <option value="sim">Sim</option>
                     <option value="nao">Não</option>
                 </select>
-                <br /><br />
+                <br><br>
                 <label for="viagemEmAndamento">Viagem em andamento?</label>
                 <select id="viagemEmAndamento">
                     <option value="sim">Sim</option>
                     <option value="nao">Não</option>
                 </select>
-                <br /><br />
+                <br><br>
                 <input type="button" value="Registrar entrada" onclick="registrarEntrada()" />
                 <br>
                 <input type="button" value="Registrar saída" onclick="registrarSaida()" />
