@@ -1,29 +1,11 @@
 let listaHorariosEntrada = document.getElementById('horariosEntrada');
 let listaHorariosSaida = document.getElementById('horariosSaida');
 
-function getHoraAtual() {
-    const now = new Date();
-    return now.toLocaleString('pt-BR');
-}
-
-function getHoraInicioPico() {
-    const horaInicioPico = document.getElementById("horaInicioPico").value;
-    const now = new Date();
-    return `${now.toLocaleDateString('pt-BR')} ${horaInicioPico}`;
-}
-
-function getHoraFinalPico() {
-    const horaFinalPico = document.getElementById("horaFinalPico").value;
-    const now = new Date();
-    return `${now.toLocaleDateString('pt-BR')} ${horaFinalPico}`;
-}
-
-
-
 function registrarEntrada() {
-    const horaAtual = getHoraAtual();
-    const horaInicioPico = getHoraInicioPico();
-    const horaFinalPico = getHoraFinalPico();
+    const now = new Date();
+    const horaAtual = now.toLocaleString('pt-BR');
+    const horaInicioPico = new Date(document.getElementById("horaInicioPico").value);
+    const horaFinalPico = new Date(document.getElementById("horaFinalPico").value);
     const sensorEntrada = document.getElementById("sensorEntrada").value;
     const viagemEmAndamento = document.getElementById("viagemEmAndamento").value;
     let contagemPessoas = parseFloat(document.getElementById("contagemPessoas").textContent);
@@ -31,7 +13,7 @@ function registrarEntrada() {
     let totalPico = parseFloat(document.getElementById("totalPico").textContent);
     let contador = parseFloat(document.getElementById("contador").textContent);
 
-    if (horaAtual >= horaInicioPico && horaAtual <= horaFinalPico && sensorEntrada === "sim" && viagemEmAndamento === "sim") {
+    if (now >= horaInicioPico && now <= horaFinalPico && sensorEntrada === "sim" && viagemEmAndamento === "sim") {
         contagemPessoas += contador;
         totalPico += contador;
         totalPessoas = Math.max(contagemPessoas, totalPessoas);
@@ -47,19 +29,20 @@ function registrarEntrada() {
 }
 
 function registrarSaida() {
-    const horaAtual = getHoraAtual();
-    const horaInicioPico = getHoraInicioPico();
-    const horaFinalPico = getHoraFinalPico();
+    const now = new Date();
+    const horaAtual = now.toLocaleString('pt-BR');
+    const horaInicioPico = new Date(document.getElementById("horaInicioPico").value);
+    const horaFinalPico = new Date(document.getElementById("horaFinalPico").value);
     const sensorSaida = document.getElementById("sensorSaida").value;
     const viagemEmAndamento = document.getElementById("viagemEmAndamento").value;
     let contagemPessoas = parseFloat(document.getElementById("contagemPessoas").textContent);
     let contador = parseFloat(document.getElementById("contador").textContent);
 
-    if (horaAtual >= horaInicioPico && horaAtual <= horaFinalPico && sensorSaida === "sim" && viagemEmAndamento === "sim" && contagemPessoas > 0) {
+    if (now >= horaInicioPico && now <= horaFinalPico && sensorSaida === "sim" && viagemEmAndamento === "sim" && contagemPessoas >= contador) {
         contagemPessoas -= contador;
     }
 
-    document.getElementById("contador").textContent = contagemPessoas.toString();
+    document.getElementById("contagemPessoas").textContent = contagemPessoas.toString();
 
     const item = document.createElement('li');
     item.appendChild(document.createTextNode(`Saída: ${horaAtual} - ${contador} pessoa(s)`));
